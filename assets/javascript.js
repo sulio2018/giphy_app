@@ -1,22 +1,5 @@
 var movies = ["The Godfather", "Goodfellas", "Casino", "A Bronx Tale"];
 
-function displayMovieGiphy() {
-
-    var flick = $(this).attr("data-movie"); ///bug
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=Ltj14oh2eAFsFaQ1sUMoe5XF8yNuGCqB&q=" +
-        flick + "&limit=10";
-
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-    
-    .then(function(response) {
-        console.log(queryURL);
-
-      $(".giphy-view").text(JSON.stringify(response));
-    });
-  }
 
 function renderButtons() {
 
@@ -28,7 +11,7 @@ function renderButtons() {
 
         a.addClass("movie btn btn-info");
 
-        a.attr("data-name", movies[i]);
+        a.attr("data-movie", movies[i]);
 
         a.text(movies[i]);
 
@@ -37,7 +20,7 @@ function renderButtons() {
 
 }
 
-$("#add-movie").on("click", function(event) {
+$("#add-movie").on("click", function (event) {
 
     event.preventDefault();
 
@@ -46,7 +29,31 @@ $("#add-movie").on("click", function(event) {
     movies.push(movie);
 
     renderButtons();
-    
-  });
 
-  renderButtons();
+    displayMovieGiphy(movie)
+
+})
+
+renderButtons();
+
+function displayMovieGiphy(m) {
+
+    var movie = $(this).attr("data-movie");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + m + "&api_key=LsSgQmv1PwrV51G47XGQf1d0SseSCRA0&limit=10";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+
+        .then(function (response) {
+            console.log(queryURL);
+            console.log(response);
+            
+
+        });
+
+        
+}
+
+
