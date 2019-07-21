@@ -51,7 +51,7 @@ $(document).ready(function () {
 
                 var results = response.data;
 
-                for (var i = 0; i < response.length; i++) {
+                for (var i = 0; i < results.length; i++) {
 
                     var giphyDiv = ("<div>");
 
@@ -71,7 +71,7 @@ $(document).ready(function () {
 
                     $(".giphy-view").append(giphyDiv);
                 }
-                
+            
 
                 $('.gif').on('click', function () {
 
@@ -97,10 +97,6 @@ $(document).ready(function () {
         return false;
 
     };
-
-
-
-
 
     $(document).on("click", ".movie", displayMovieGiphy);
 
