@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style.css">
-    <title>Giphy App</title>
+    <title>Mobster Movie Giphs</title>
 </head>
 
 <body>
@@ -16,25 +16,26 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-sm-9">
                 <div class="buttons-view"></div>
+            </div>
+
+
+            <div class="col-sm-3">
+                <form id="movie-form">
+                    <label for="movie-input">
+                        <h5>Add a movie</h5>
+                    </label><br>
+                    <input type="text" id="movie-input"><br><br>
+                    <input id="add-movie" class="btn btn-secondary" type="submit" value="Submit">
+                </form>
             </div>
         </div>
 
         <div class="row">
 
-            <div class="col-9">
+            <div class="col-sm-12">
                 <div class="giphy-view"></div>
-            </div>
-
-            <div class="col-3">
-                <form id="movie-form">
-                    <label for="movie-input">
-                        <h4>Add a movie</h4>
-                    </label><br>
-                    <input type="text" id="movie-input"><br><br>
-                    <input id="add-movie" class="btn btn-info" type="submit" value="Add a Movie">
-                </form>
             </div>
 
         </div>

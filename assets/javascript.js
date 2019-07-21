@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
-    var movies = ["The Godfather", "Goodfellas", "Casino", "A Bronx Tale"];
+    var movies = ["The Godfather", "Goodfellas", "Casino", "A Bronx Tale", "The Departed", "Mean Streets", "Reservoir Dogs", "Donnie Brasco", "American Gangster", "The Untouchables"];
 
+    //Create array buttons
     function renderButtons() {
 
         $(".buttons-view").empty();
@@ -21,6 +22,7 @@ $(document).ready(function () {
 
     }
 
+    //Create button based on user input
     $("#add-movie").on("click", function (event) {
 
         event.preventDefault();
@@ -35,6 +37,10 @@ $(document).ready(function () {
 
     renderButtons();
 
+    //API call
+    //Loop thru results
+    //Filter ratings
+    //Add attributes
     function displayMovieGiphy(m) {
 
         var m = $(this).attr("data-movie");
@@ -53,26 +59,29 @@ $(document).ready(function () {
 
                 for (var i = 0; i < results.length; i++) {
 
-                    var giphyDiv = ("<div>");
+                    if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
 
-                    var rating = results[i].rating;
+                        var giphyDiv = $("<div>");
 
-                    var p = ("<p>").text("Rating: " + rating);
+                        var rating = results[i].rating;
 
-                    var movieImage = ("<img class= 'gif'>");
-                    movieImage.attr("src", results[i].images.original_still.url);
-                    movieImage.attr("data-still", results[i].images.original_still.url);
-                    movieImage.attr("data-animate", results[i].images.original.url);
-                    movieImage.attr("data-state", "still");
+                        var p = $("<p class='rating'>").html("<h5>Rating: " + rating + "</h5>");
 
-                    giphyDiv.append(p);
-                    giphyDiv.append(movieImage);
+                        var movieImage = $("<img class='gif'>");
+                        movieImage.attr("src", results[i].images.original_still.url);
+                        movieImage.attr("data-still", results[i].images.original_still.url);
+                        movieImage.attr("data-animate", results[i].images.original.url);
+                        movieImage.attr("data-state", "still");
+
+                        giphyDiv.append(p);
+                        giphyDiv.append(movieImage);
 
 
-                    $(".giphy-view").append(giphyDiv);
+                        $(".giphy-view").prepend(giphyDiv);
+                    }
                 }
-            
 
+                //Manipulate still and animate states
                 $('.gif').on('click', function () {
 
                     var state = $(this).attr('data-state');
@@ -94,6 +103,7 @@ $(document).ready(function () {
             });
 
         $("#movie-input").val("");
+        renderButtons();
         return false;
 
     };
